@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<!-- ボタンCSSの参照先 http://www.htmq.com/csskihon/004.shtml -->
+		<style type="text/css">
+			.square_btn{
+				display: inline-block;
+				padding: 0.5em 1em;
+				text-decoration: none;
+				background: #668ad8;/*ボタン色*/
+				color: #FFF;
+				border-bottom: solid 4px #627295;
+				border-radius: 3px;
+			}
+			.square_btn:active {/*ボタンを押したとき*/
+				-ms-transform: translateY(4px);
+				-webkit-transform: translateY(4px);
+				transform: translateY(4px);/*下に動く*/
+				border-bottom: none;/*線を消す*/
+			}
+		</style>
+		<title>じゃんけん</title>
+	</head>
+	<body>
+		<h1>じゃんけん</h1>
+		　　　　　　　あなた　　　　　　　　　　　　　　　　　相手
+		
+		<script>
+			var win = 0;
+			var lose = 0;
+			var draw = 0;
+			function janken(myhand) {
+				var hand = ["ぐー","ちょき","ぱー"]; // 手の配列
+				var aihand = Math.floor(3*Math.random()); // CPUが出す手を決める
+				var result = ""; // 変数の初期化
+				var myimg = document.getElementById("aihand"); 
+				var aiimg = document.getElementById("myhand"); 
+				if( myhand == 0 ) {
+					myimg.src = "gu.png";
+				} else if(myhand == 1) {
+					myimg.src = "choki.png";
+				} else{
+					myimg.src = "pa.png";
+				}
+				if( aihand == 0 ) {
+					aiimg.src = "gu.png";
+				} else if(aihand == 1) {
+					aiimg.src = "choki.png";
+				} else{
+					aiimg.src = "pa.png";
+				}
+				
+				if( myhand == aihand ) {
+					result = "引き分け";
+					draw++;
+				} else if(myhand + 1 == aihand || (myhand == 2 && aihand == 0)) {
+					result = "勝ち";
+					win++;
+				} else{
+					result = "負け";
+					lose++;
+				}
+				document.getElementById("win").innerHTML = win+"回";
+				document.getElementById("lose").innerHTML = lose+"回";
+				document.getElementById("draw").innerHTML = draw+"回";
+				document.getElementById("result").innerHTML = result;
+			}
+			
+		</script>
+		
+		<div><img id="aihand" src="unknown.png" width="300" height="400">
+		<img id="myhand" src="unknown.png" width="300" height="400"></div>
+		<div><a href="#" class="square_btn" onclick="janken(0)">グー</a>
+		<a href="#" class="square_btn" onclick="janken(1)">チョキ</a>
+		<a href="#" class="square_btn" onclick="janken(2)">パー</a></div>
+		<result><div id="result"></div></result>
+
+		<dl>
+			<dt>結果</dt>
+			<dt>勝った回数</dt>
+			<dd id="win">0回</dd>
+			<dt>負けた回数</dt>
+			<dd id="lose">0回</dd>
+			<dt>引き分けの回数</dt>
+			<dd id="draw">0回</dd>
+		</dl>
+	</body>
+</html>
