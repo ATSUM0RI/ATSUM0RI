@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* 
+日本語を入れておかないとTerapad読み込み時にutf-8で認識されないんですよね
+ */
+
+body {
+	color: #000;
+	background-color: #A5CAD7;
+}
+h1 {
+	color: #06738F;
+}
+a {
+	font-size: 30pt;
+}
+result {
+	font-size: 30pt;
+}
